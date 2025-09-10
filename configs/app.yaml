@@ -1,0 +1,38 @@
+# AkMon 应用配置文件
+timezone: Asia/Shanghai
+
+# 监控品种配置
+symbols:
+  - type: future
+    code: IC
+    rule: "carry_rate < -1.0 and volume > 5000"
+  - type: stock
+    code: 600519
+    rule: "pct_change_5m < -1.5 and outflow_rate > 0.8"
+
+# 调度器配置
+scheduler:
+  interval_seconds: 60
+
+# 通知配置
+notifier:
+  type: wecom
+  webhook_url: "https://qyapi.weixin.qq.com/robot/send?key=REPLACE_ME"
+
+# 存储配置
+storage:
+  type: sqlite
+  dsn: "sqlite:///akmon.db"
+
+# 预警阈值配置
+thresholds:
+  basis_threshold: -30.0
+  carry_rate_threshold: -1.0
+  trigger_direction: "below"
+
+# 数据源配置
+data_sources:
+  akshare:
+    timeout: 30
+    retry_count: 3
+    retry_delay: 5

@@ -1,0 +1,17 @@
+# configs/app.example.yaml
+timezone: Asia/Shanghai
+symbols:
+  - type: future
+    code: IC
+    rule: "carry_rate < -1.0 and volume > 5000"
+  - type: stock
+    code: 600519
+    rule: "pct_change_5m < -1.5 and outflow_rate > 0.8"
+scheduler:
+  interval_seconds: 60
+notifier:
+  type: wecom
+  webhook_url: "https://qyapi.weixin.qq.com/robot/send?key=REPLACE_ME"
+storage:
+  type: sqlite
+  dsn: "sqlite:///akmon.db"
